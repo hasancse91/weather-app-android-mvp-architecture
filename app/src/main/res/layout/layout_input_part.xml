@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
+    <Button
+        android:id="@+id/btn_view_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/view_weather"
