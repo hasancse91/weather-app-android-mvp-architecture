@@ -33,9 +33,10 @@ dependencies {
     // material design
     implementation 'com.google.android.material:material:1.1.0-alpha07'
 
-    // retrofit network library and gson JSON parsing library
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    // network call related libraries
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0' // REST API calling library
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0' // JSON parsing library
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.13.1' // HTTP log printing library
 
     // glide image loading library
     implementation 'com.github.bumptech.glide:glide:4.9.0'
