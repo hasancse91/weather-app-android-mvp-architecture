@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.hellohasan.weatherforecast.features.weather_info_show.view.MainActivity">
+        <activity android:name="com.hellohasan.weatherforecast.features.weather_info_show.view.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

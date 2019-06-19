@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.hellohasan.weatherforecast.R
+import com.hellohasan.weatherforecast.convertToListOfCityName
 import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.City
 import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.WeatherDataModel
 import com.hellohasan.weatherforecast.features.weather_info_show.presenter.WeatherInfoShowPresenterImpl
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity(), MainActivityView {
 
     private val weatherInfoShowPresenter = WeatherInfoShowPresenterImpl(this)
 
+    private var cityList: MutableList<City> = mutableListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,7 +31,11 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         weatherInfoShowPresenter.fetchCityList(this)
 
         btn_view_weather.setOnClickListener {
-            weatherInfoShowPresenter.fetchWeatherInfo(1185241)
+            output_group.visibility = View.GONE
+
+            val spinnerSelectedItemPos = spinner.selectedItemPosition
+
+            weatherInfoShowPresenter.fetchWeatherInfo(cityList[spinnerSelectedItemPos].id)
         }
     }
 
@@ -36,7 +44,15 @@ class MainActivity : AppCompatActivity(), MainActivityView {
     }
 
     override fun onCityListFetchSuccess(cityList: MutableList<City>) {
-        Toast.makeText(this, cityList.size, Toast.LENGTH_SHORT).show()
+        this.cityList = cityList
+
+        val arrayAdapter = ArrayAdapter(
+                this,
+                R.layout.support_simple_spinner_dropdown_item,
+                cityList.convertToListOfCityName()
+        )
+
+        spinner.adapter = arrayAdapter
     }
 
     override fun onCityListFetchFailure(errorMessage: String) {

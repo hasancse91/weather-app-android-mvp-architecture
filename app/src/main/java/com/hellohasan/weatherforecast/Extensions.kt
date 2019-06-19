@@ -1,5 +1,6 @@
 package com.hellohasan.weatherforecast
 
+import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.City
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -48,4 +49,15 @@ fun Int.unixTimestampToTimeString() : String {
 fun Double.kelvinToCelsius() : Int {
 
     return  (this - 273.15).toInt()
+}
+
+fun MutableList<City>.convertToListOfCityName() : MutableList<String> {
+
+    val cityNameList: MutableList<String> = mutableListOf()
+
+    for (city in this) {
+        cityNameList.add(city.name)
+    }
+
+    return  cityNameList
 }
