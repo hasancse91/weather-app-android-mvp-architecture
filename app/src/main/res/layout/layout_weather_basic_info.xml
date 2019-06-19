@@ -37,6 +37,7 @@
         app:layout_constraintTop_toTopOf="@id/tv_temperature" />
 
     <TextView
+        android:id="@+id/tv_city_country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
