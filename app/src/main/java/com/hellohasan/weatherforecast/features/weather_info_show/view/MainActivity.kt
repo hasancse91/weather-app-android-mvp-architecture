@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.hellohasan.weatherforecast.R
 import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.City
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        weatherInfoShowPresenter.fetchCityList(this)
+
         btn_view_weather.setOnClickListener {
             weatherInfoShowPresenter.fetchWeatherInfo(1185241)
         }
@@ -33,11 +36,11 @@ class MainActivity : AppCompatActivity(), MainActivityView {
     }
 
     override fun onCityListFetchSuccess(cityList: MutableList<City>) {
-
+        Toast.makeText(this, cityList.size, Toast.LENGTH_SHORT).show()
     }
 
     override fun onCityListFetchFailure(errorMessage: String) {
-
+        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
     }
 
     override fun onWeatherInfoFetchSuccess(weatherDataModel: WeatherDataModel) {
@@ -63,5 +66,4 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         tv_error_message.visibility = View.VISIBLE
         tv_error_message.text = errorMessage
     }
-
 }

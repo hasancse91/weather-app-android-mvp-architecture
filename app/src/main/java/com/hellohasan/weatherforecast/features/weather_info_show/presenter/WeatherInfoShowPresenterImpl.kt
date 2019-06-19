@@ -1,5 +1,6 @@
 package com.hellohasan.weatherforecast.features.weather_info_show.presenter
 
+import android.content.Context
 import android.view.View
 import com.hellohasan.weatherforecast.common.RequestCompleteListener
 import com.hellohasan.weatherforecast.features.weather_info_show.model.WeatherInfoShowModelImpl
@@ -15,8 +16,8 @@ class WeatherInfoShowPresenterImpl(private val view: MainActivityView) : Weather
 
     private val weatherInfoShowModel = WeatherInfoShowModelImpl()
 
-    override fun fetchCityList() {
-        weatherInfoShowModel.getCityList(object : RequestCompleteListener<MutableList<City>> {
+    override fun fetchCityList(context: Context) {
+        weatherInfoShowModel.getCityList(context, object : RequestCompleteListener<MutableList<City>> {
 
             override fun onRequestSuccess(data: MutableList<City>) {
                 view.onCityListFetchSuccess(data)
