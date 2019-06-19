@@ -14,7 +14,7 @@ class WeatherInfoShowModelImpl: WeatherInfoShowModel {
     private val OPEN_WEATHER_APP_ID = "d450a4a574372bd12f2fa308bf3cf15a"
 
     override fun getCityList(callback: RequestCompleteListener<MutableList<City>>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun getWeatherInformation(cityId: Int, callback: RequestCompleteListener<WeatherInfoResponse>) {

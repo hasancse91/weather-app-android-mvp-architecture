@@ -6,15 +6,31 @@ import com.hellohasan.weatherforecast.features.weather_info_show.model.data_clas
 import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.WeatherInfoResponse
 import com.hellohasan.weatherforecast.features.weather_info_show.view.MainActivityView
 
-class WeatherInfoShowPresenterImpl(mainActivityView: MainActivityView): WeatherInfoShowPresenter {
+class WeatherInfoShowPresenterImpl(private val mainActivityView: MainActivityView) : WeatherInfoShowPresenter {
 
     private val weatherInfoShowModel = WeatherInfoShowModelImpl()
 
-    override fun fetchCityList(callback: RequestCompleteListener<MutableList<City>>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun fetchCityList() {
+        weatherInfoShowModel.getCityList(object : RequestCompleteListener<MutableList<City>> {
+            override fun onRequestSuccess(data: MutableList<City>) {
+                mainActivityView.onCityListFetchSuccess(data)
+            }
+
+            override fun onRequestFailed(errorMessage: String) {
+                mainActivityView.onCityListFetchFailure(errorMessage)
+            }
+        })
     }
 
-    override fun fetchWeatherInfo(cityId: Int, callback: RequestCompleteListener<WeatherInfoResponse>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun fetchWeatherInfo(cityId: Int) {
+        weatherInfoShowModel.getWeatherInformation(cityId, object : RequestCompleteListener<WeatherInfoResponse> {
+            override fun onRequestSuccess(data: WeatherInfoResponse) {
+                mainActivityView.onWeatherInfoFetchSuccess(data)
+            }
+
+            override fun onRequestFailed(errorMessage: String) {
+                mainActivityView.onWeatherInfoFetchFailure(errorMessage)
+            }
+        })
     }
 }

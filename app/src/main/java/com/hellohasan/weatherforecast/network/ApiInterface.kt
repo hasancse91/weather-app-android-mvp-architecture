@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiInterface {
-    @GET("/weather")
+    @GET("weather")
     fun callApiForWeatherInfo(@Query("id") cityId: Int, @Query("appid") appId: String): Call<WeatherInfoResponse>
 }
