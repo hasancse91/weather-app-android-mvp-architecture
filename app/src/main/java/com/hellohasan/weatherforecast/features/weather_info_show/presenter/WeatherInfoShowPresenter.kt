@@ -5,4 +5,5 @@ import android.content.Context
 interface WeatherInfoShowPresenter {
     fun fetchCityList(context: Context)
     fun fetchWeatherInfo(cityId: Int)
+    fun detachView()
 }

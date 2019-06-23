@@ -12,7 +12,7 @@ import com.hellohasan.weatherforecast.kelvinToCelsius
 import com.hellohasan.weatherforecast.unixTimestampToDateTimeString
 import com.hellohasan.weatherforecast.unixTimestampToTimeString
 
-class WeatherInfoShowPresenterImpl(private val view: MainActivityView) : WeatherInfoShowPresenter {
+class WeatherInfoShowPresenterImpl(private var view: MainActivityView?) : WeatherInfoShowPresenter {
 
     private val weatherInfoShowModel = WeatherInfoShowModelImpl()
 
@@ -20,46 +20,51 @@ class WeatherInfoShowPresenterImpl(private val view: MainActivityView) : Weather
         weatherInfoShowModel.getCityList(context, object : RequestCompleteListener<MutableList<City>> {
 
             override fun onRequestSuccess(data: MutableList<City>) {
-                view.onCityListFetchSuccess(data)
+                view?.onCityListFetchSuccess(data)
             }
 
             override fun onRequestFailed(errorMessage: String) {
-                view.onCityListFetchFailure(errorMessage)
+                view?.onCityListFetchFailure(errorMessage)
             }
         })
     }
 
     override fun fetchWeatherInfo(cityId: Int) {
 
-        view.handleProgressBarVisibility(View.VISIBLE)
+        view?.handleProgressBarVisibility(View.VISIBLE)
 
         weatherInfoShowModel.getWeatherInformation(cityId, object : RequestCompleteListener<WeatherInfoResponse> {
 
             override fun onRequestSuccess(data: WeatherInfoResponse) {
 
-                view.handleProgressBarVisibility(View.GONE)
+                view?.handleProgressBarVisibility(View.GONE)
 
                 // data formatting to show on UI
-                val weatherDataModel = WeatherDataModel()
-                weatherDataModel.dateTime = data.dt.unixTimestampToDateTimeString()
-                weatherDataModel.temperature = data.main.temp.kelvinToCelsius().toString()
-                weatherDataModel.cityAndCountry = "${data.name}, ${data.sys.country}"
-                weatherDataModel.weatherConditionIconUrl = "http://openweathermap.org/img/w/${data.weather[0].icon}.png"
-                weatherDataModel.weatherConditionIconDescription = data.weather[0].description
-                weatherDataModel.humidity = "${data.main.humidity}%"
-                weatherDataModel.pressure = "${data.main.pressure} mBar"
-                weatherDataModel.visibility = "${data.visibility} KM"
-                weatherDataModel.sunrise = data.sys.sunrise.unixTimestampToTimeString()
-                weatherDataModel.sunset = data.sys.sunset.unixTimestampToTimeString()
+                val weatherDataModel = WeatherDataModel(
+                    dateTime = data.dt.unixTimestampToDateTimeString(),
+                    temperature = data.main.temp.kelvinToCelsius().toString(),
+                    cityAndCountry = "${data.name}, ${data.sys.country}",
+                    weatherConditionIconUrl = "http://openweathermap.org/img/w/${data.weather[0].icon}.png",
+                    weatherConditionIconDescription = data.weather[0].description,
+                    humidity = "${data.main.humidity}%",
+                    pressure = "${data.main.pressure} mBar",
+                    visibility = "${data.visibility} KM",
+                    sunrise = data.sys.sunrise.unixTimestampToTimeString(),
+                    sunset = data.sys.sunset.unixTimestampToTimeString()
+                )
 
-                view.onWeatherInfoFetchSuccess(weatherDataModel)
+                view?.onWeatherInfoFetchSuccess(weatherDataModel)
             }
 
             override fun onRequestFailed(errorMessage: String) {
-                view.handleProgressBarVisibility(View.GONE)
+                view?.handleProgressBarVisibility(View.GONE)
 
-                view.onWeatherInfoFetchFailure(errorMessage)
+                view?.onWeatherInfoFetchFailure(errorMessage)
             }
         })
+    }
+
+    override fun detachView() {
+        view = null
     }
 }

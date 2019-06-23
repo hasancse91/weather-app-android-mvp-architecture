@@ -39,6 +39,11 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         }
     }
 
+    override fun onDestroy() {
+        weatherInfoShowPresenter.detachView()
+        super.onDestroy()
+    }
+
     override fun handleProgressBarVisibility(visibility: Int) {
         progressBar?.visibility = visibility
     }
