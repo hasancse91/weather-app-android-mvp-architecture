@@ -48,7 +48,7 @@ class WeatherInfoShowPresenterImpl(private var view: MainActivityView?) : Weathe
                     weatherConditionIconDescription = data.weather[0].description,
                     humidity = "${data.main.humidity}%",
                     pressure = "${data.main.pressure} mBar",
-                    visibility = "${data.visibility} KM",
+                    visibility = "${data.visibility/1000.0} KM",
                     sunrise = data.sys.sunrise.unixTimestampToTimeString(),
                     sunset = data.sys.sunset.unixTimestampToTimeString()
                 )
