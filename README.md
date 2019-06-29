@@ -2,7 +2,7 @@
 
 MVP Architecture is one of the most popular architecture to develop a maintanable and managable codebase. We are developing a sample `Weater Forecast` Android App with `MVP Architecture` using `Kotlin` language and `Retrofit` network calling library.
 
-<img src="https://raw.githubusercontent.com/hasancse91/weather-app-android-mvp-architecture/master/data/screenshot-1.png" width="250" height="444" />
+<img src="https://raw.githubusercontent.com/hasancse91/weather-app-android-mvp-architecture/master/data/screenshot_1.png" width="250" height="444" />
 
 ### Use your own App ID for real weather forecast
 We will use [Open Weather Map API](https://openweathermap.org/api) for collecting weather information. Before start, you need to sign up and get your own `APP ID` to use there weather API. After activation of your API key you can use it to run this project.
