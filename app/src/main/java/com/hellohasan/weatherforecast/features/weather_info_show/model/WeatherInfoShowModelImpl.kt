@@ -44,7 +44,7 @@ class WeatherInfoShowModelImpl : WeatherInfoShowModel {
     override fun getWeatherInformation(cityId: Int, callback: RequestCompleteListener<WeatherInfoResponse>) {
 
         val apiInterface: ApiInterface = RetrofitClient.client.create(ApiInterface::class.java)
-        val call: Call<WeatherInfoResponse> = apiInterface.callApiForWeatherInfo(cityId, OPEN_WEATHER_APP_ID)
+        val call: Call<WeatherInfoResponse> = apiInterface.callApiForWeatherInfo(cityId)
 
         call.enqueue(object : Callback<WeatherInfoResponse> {
 
