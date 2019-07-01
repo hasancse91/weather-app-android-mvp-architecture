@@ -15,8 +15,6 @@ import com.google.gson.reflect.TypeToken
 
 class WeatherInfoShowModelImpl : WeatherInfoShowModel {
 
-    private val OPEN_WEATHER_APP_ID = "d450a4a574372bd12f2fa308bf3cf15a"
-
     override fun getCityList(context: Context, callback: RequestCompleteListener<MutableList<City>>) {
 
         try {
@@ -30,7 +28,7 @@ class WeatherInfoShowModelImpl : WeatherInfoShowModel {
 
             val groupListType = object : TypeToken<ArrayList<City>>() {}.type
             val gson = GsonBuilder().create()
-            val cityList: MutableList<City> = gson.fromJson<MutableList<City>>(tContents, groupListType)
+            val cityList: MutableList<City> = gson.fromJson(tContents, groupListType)
 
             callback.onRequestSuccess(cityList)
 
