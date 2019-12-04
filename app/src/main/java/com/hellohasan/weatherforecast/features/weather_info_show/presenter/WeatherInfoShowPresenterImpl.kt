@@ -1,9 +1,8 @@
 package com.hellohasan.weatherforecast.features.weather_info_show.presenter
 
-import android.content.Context
 import android.view.View
+import com.hellohasan.weatherforecast.features.weather_info_show.model.WeatherInfoShowModel
 import com.hellohasan.weatherforecast.common.RequestCompleteListener
-import com.hellohasan.weatherforecast.features.weather_info_show.model.WeatherInfoShowModelImpl
 import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.City
 import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.WeatherDataModel
 import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.WeatherInfoResponse
@@ -12,12 +11,12 @@ import com.hellohasan.weatherforecast.kelvinToCelsius
 import com.hellohasan.weatherforecast.unixTimestampToDateTimeString
 import com.hellohasan.weatherforecast.unixTimestampToTimeString
 
-class WeatherInfoShowPresenterImpl(private var view: MainActivityView?) : WeatherInfoShowPresenter {
+class WeatherInfoShowPresenterImpl(
+        private var view: MainActivityView?,
+        private val weatherInfoShowModel: WeatherInfoShowModel) : WeatherInfoShowPresenter {
 
-    private val weatherInfoShowModel = WeatherInfoShowModelImpl()
-
-    override fun fetchCityList(context: Context) {
-        weatherInfoShowModel.getCityList(context, object : RequestCompleteListener<MutableList<City>> {
+    override fun fetchCityList() {
+        weatherInfoShowModel.getCityList(object : RequestCompleteListener<MutableList<City>> {
 
             override fun onRequestSuccess(data: MutableList<City>) {
                 view?.onCityListFetchSuccess(data)

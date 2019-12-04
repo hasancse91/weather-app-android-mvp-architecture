@@ -9,8 +9,11 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.hellohasan.weatherforecast.R
 import com.hellohasan.weatherforecast.convertToListOfCityName
+import com.hellohasan.weatherforecast.features.weather_info_show.model.WeatherInfoShowModel
+import com.hellohasan.weatherforecast.features.weather_info_show.model.WeatherInfoShowModelImpl
 import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.City
 import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.WeatherDataModel
+import com.hellohasan.weatherforecast.features.weather_info_show.presenter.WeatherInfoShowPresenter
 import com.hellohasan.weatherforecast.features.weather_info_show.presenter.WeatherInfoShowPresenterImpl
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_input_part.*
@@ -20,7 +23,8 @@ import kotlinx.android.synthetic.main.layout_weather_basic_info.*
 
 class MainActivity : AppCompatActivity(), MainActivityView {
 
-    private val weatherInfoShowPresenter = WeatherInfoShowPresenterImpl(this)
+    private lateinit var weatherInfoShowModel: WeatherInfoShowModel
+    private lateinit var weatherInfoShowPresenter: WeatherInfoShowPresenter
 
     private var cityList: MutableList<City> = mutableListOf()
 
@@ -28,13 +32,20 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        weatherInfoShowPresenter.fetchCityList(this)
+        // initialize model and presenter
+        weatherInfoShowModel = WeatherInfoShowModelImpl(applicationContext)
+        weatherInfoShowPresenter = WeatherInfoShowPresenterImpl(this, weatherInfoShowModel)
+
+        // call for fetching city list
+        weatherInfoShowPresenter.fetchCityList()
+
 
         btn_view_weather.setOnClickListener {
             output_group.visibility = View.GONE
 
             val spinnerSelectedItemPos = spinner.selectedItemPosition
 
+            // fetch weather info of specific city
             weatherInfoShowPresenter.fetchWeatherInfo(cityList[spinnerSelectedItemPos].id)
         }
     }

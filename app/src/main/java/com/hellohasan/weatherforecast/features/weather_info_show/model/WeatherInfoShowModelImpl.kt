@@ -13,9 +13,9 @@ import retrofit2.Response
 import java.io.IOException
 import com.google.gson.reflect.TypeToken
 
-class WeatherInfoShowModelImpl : WeatherInfoShowModel {
+class WeatherInfoShowModelImpl(private val context: Context) : WeatherInfoShowModel {
 
-    override fun getCityList(context: Context, callback: RequestCompleteListener<MutableList<City>>) {
+    override fun getCityList(callback: RequestCompleteListener<MutableList<City>>) {
 
         try {
             val stream = context.assets.open("city_list.json")
