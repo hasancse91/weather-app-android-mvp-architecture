@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.hellohasan.weatherforecast.BuildConfig
 import com.hellohasan.weatherforecast.R
 import com.hellohasan.weatherforecast.convertToListOfCityName
 import com.hellohasan.weatherforecast.features.weather_info_show.model.WeatherInfoShowModel
@@ -24,8 +23,8 @@ import kotlinx.android.synthetic.main.layout_weather_basic_info.*
 
 class MainActivity : AppCompatActivity(), MainActivityView {
 
-    private lateinit var weatherInfoShowModel: WeatherInfoShowModel
-    private lateinit var weatherInfoShowPresenter: WeatherInfoShowPresenter
+    private lateinit var model: WeatherInfoShowModel
+    private lateinit var presenter: WeatherInfoShowPresenter
 
     private var cityList: MutableList<City> = mutableListOf()
 
@@ -34,11 +33,11 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         setContentView(R.layout.activity_main)
 
         // initialize model and presenter
-        weatherInfoShowModel = WeatherInfoShowModelImpl(applicationContext)
-        weatherInfoShowPresenter = WeatherInfoShowPresenterImpl(this, weatherInfoShowModel)
+        model = WeatherInfoShowModelImpl(applicationContext)
+        presenter = WeatherInfoShowPresenterImpl(this, model)
 
         // call for fetching city list
-        weatherInfoShowPresenter.fetchCityList()
+        presenter.fetchCityList()
 
 
         btn_view_weather.setOnClickListener {
@@ -47,19 +46,32 @@ class MainActivity : AppCompatActivity(), MainActivityView {
             val spinnerSelectedItemPos = spinner.selectedItemPosition
 
             // fetch weather info of specific city
-            weatherInfoShowPresenter.fetchWeatherInfo(cityList[spinnerSelectedItemPos].id)
+            presenter.fetchWeatherInfo(cityList[spinnerSelectedItemPos].id)
         }
     }
 
     override fun onDestroy() {
-        weatherInfoShowPresenter.detachView()
+        presenter.detachView()
         super.onDestroy()
     }
 
+    /**
+     * Activity doesn't know when should progress bar visible or hide. It only knows
+     * how to show/hide it.
+     * Presenter will decide the logic of progress bar visibility.
+     * This method will be triggered by presenter when needed.
+     */
     override fun handleProgressBarVisibility(visibility: Int) {
         progressBar?.visibility = visibility
     }
 
+    /**
+     * This method will be triggered when city list successfully fetched.
+     * From where this list will be come? From local db or network call or from somewhere else?
+     * Activity/View doesn't know and doesn't care anything about it. Activity only knows how to
+     * show the city list on the UI and listen the click event of the Spinner.
+     * Model knows about the data source of city list.
+     */
     override fun onCityListFetchSuccess(cityList: MutableList<City>) {
         this.cityList = cityList
 
@@ -72,10 +84,18 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         spinner.adapter = arrayAdapter
     }
 
+    /**
+     * This method will triggered if city list fetching process failed
+     */
     override fun onCityListFetchFailure(errorMessage: String) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
     }
 
+    /**
+     * This method will triggered when weather information successfully fetched.
+     * Activity/View doesn't know anything about the data source of weather API.
+     * Only model knows about the data source of weather API.
+     */
     override fun onWeatherInfoFetchSuccess(weatherDataModel: WeatherDataModel) {
         output_group.visibility = View.VISIBLE
         tv_error_message.visibility = View.GONE
@@ -94,6 +114,9 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         tv_sunset_time?.text = weatherDataModel.sunset
     }
 
+    /**
+     * This method will triggered if weather information fetching process failed
+     */
     override fun onWeatherInfoFetchFailure(errorMessage: String) {
         output_group.visibility = View.GONE
         tv_error_message.visibility = View.VISIBLE

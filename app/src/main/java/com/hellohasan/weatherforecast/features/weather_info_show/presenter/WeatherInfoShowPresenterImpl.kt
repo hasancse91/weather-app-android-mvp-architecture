@@ -13,30 +13,35 @@ import com.hellohasan.weatherforecast.unixTimestampToTimeString
 
 class WeatherInfoShowPresenterImpl(
         private var view: MainActivityView?,
-        private val weatherInfoShowModel: WeatherInfoShowModel) : WeatherInfoShowPresenter {
+        private val model: WeatherInfoShowModel) : WeatherInfoShowPresenter {
 
     override fun fetchCityList() {
-        weatherInfoShowModel.getCityList(object : RequestCompleteListener<MutableList<City>> {
+        // call model's method for city list
+        model.getCityList(object : RequestCompleteListener<MutableList<City>> {
 
+            // if model successfully fetch the data from 'somewhere', this method will be called
             override fun onRequestSuccess(data: MutableList<City>) {
-                view?.onCityListFetchSuccess(data)
+                view?.onCityListFetchSuccess(data) //let view know the formatted city list data
             }
 
+            // if model failed to fetch data then this method will be called
             override fun onRequestFailed(errorMessage: String) {
-                view?.onCityListFetchFailure(errorMessage)
+                view?.onCityListFetchFailure(errorMessage) //let view know about failure
             }
         })
     }
 
     override fun fetchWeatherInfo(cityId: Int) {
 
-        view?.handleProgressBarVisibility(View.VISIBLE)
+        view?.handleProgressBarVisibility(View.VISIBLE) // let view know about progress bar visibility
 
-        weatherInfoShowModel.getWeatherInformation(cityId, object : RequestCompleteListener<WeatherInfoResponse> {
+        // call model's method for weather information
+        model.getWeatherInformation(cityId, object : RequestCompleteListener<WeatherInfoResponse> {
 
+            // if model successfully fetch the data from 'somewhere', this method will be called
             override fun onRequestSuccess(data: WeatherInfoResponse) {
 
-                view?.handleProgressBarVisibility(View.GONE)
+                view?.handleProgressBarVisibility(View.GONE) // let view know about progress bar visibility
 
                 // data formatting to show on UI
                 val weatherDataModel = WeatherDataModel(
@@ -52,13 +57,14 @@ class WeatherInfoShowPresenterImpl(
                     sunset = data.sys.sunset.unixTimestampToTimeString()
                 )
 
-                view?.onWeatherInfoFetchSuccess(weatherDataModel)
+                view?.onWeatherInfoFetchSuccess(weatherDataModel) //let view know the formatted weather data
             }
 
+            // if model failed to fetch data then this method will be called
             override fun onRequestFailed(errorMessage: String) {
-                view?.handleProgressBarVisibility(View.GONE)
+                view?.handleProgressBarVisibility(View.GONE) // let view know about progress bar visibility
 
-                view?.onWeatherInfoFetchFailure(errorMessage)
+                view?.onWeatherInfoFetchFailure(errorMessage) //let view know about failure
             }
         })
     }
