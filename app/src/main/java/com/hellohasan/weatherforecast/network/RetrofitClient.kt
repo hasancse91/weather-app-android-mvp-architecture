@@ -2,7 +2,6 @@ package com.hellohasan.weatherforecast.network
 
 import com.google.gson.GsonBuilder
 import com.hellohasan.weatherforecast.BuildConfig
-import com.hellohasan.weatherforecast.Config.Companion.BASE_URL
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 import okhttp3.OkHttpClient
@@ -39,7 +38,7 @@ object RetrofitClient {
                         val client = httpClient.build()
 
                         retrofit = Retrofit.Builder()
-                                .baseUrl(BASE_URL)
+                                .baseUrl(BuildConfig.BASE_URL)
                                 .addConverterFactory(GsonConverterFactory.create(gson))
                                 .client(client)
                                 .build()

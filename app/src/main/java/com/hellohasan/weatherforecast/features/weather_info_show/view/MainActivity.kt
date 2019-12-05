@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.hellohasan.weatherforecast.BuildConfig
 import com.hellohasan.weatherforecast.R
 import com.hellohasan.weatherforecast.convertToListOfCityName
 import com.hellohasan.weatherforecast.features.weather_info_show.model.WeatherInfoShowModel
