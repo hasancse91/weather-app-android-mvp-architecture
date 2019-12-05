@@ -15,7 +15,7 @@ Clone the project and open it using Android Studio. Then open your `local.proper
 
 #### Use Sample API without creating account
 Add below lines at the end of your `local.properties` file. Then run the project. You'll get dummy or static API response from Open Weather API.
-```
+```groovy
 #this is sample Base URL
 base_url=https://samples.openweathermap.org/data/2.5/
 
@@ -24,7 +24,7 @@ app_id=b6907d289e10d714a6e88b30761fae22
 ```
 #### Use Real APP ID after sign up and activation of your APP ID
 After Sign up at the website collect your own `APP ID`. Then add below lines with your APP ID at the end of `local.properties` file.
-```
+```groovy
 #this is real Base URL
 base_url=http://api.openweathermap.org/data/2.5/
 
