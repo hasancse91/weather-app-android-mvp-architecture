@@ -33,4 +33,6 @@ app_id=YOUR_OWN_APP_ID
 ```
 The BASE URL and APP ID will be fetched from `build.gradle` file and will be stored it in `BuildConfig`. And `Retrofit` API call will use the BASE URL and APP ID from `BuildConfig`.
 ### Run the project
-Sync the `Gradle` and run the project. Install APK on your emulator or real device. Turn on the internet of your testing device. Enjoy!
+Sync the `Gradle` and run the project. Install APK on your emulator or real device. Turn on the internet of your testing device. For better understanding, please read the comments of every methods. Hope, these comments will help you to feel the `MVP Architecture`.
+### Disclaimer
+There are some other ways of implementation of `MVP`. There are some arguments about the responsibilities of `presenter` and `model`. After understanding the basic part of `MVP Architecture` you can find the better way of implementation.
