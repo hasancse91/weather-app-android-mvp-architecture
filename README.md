@@ -4,11 +4,17 @@ MVP Architecture is one of the most popular architecture to develop a maintanabl
 
 <img src="https://raw.githubusercontent.com/hasancse91/weather-app-android-mvp-architecture/master/data/screenshot_1.png" width="250" height="444" />
 
-### Use your own App ID for real weather forecast
-We will use [Open Weather Map API](https://openweathermap.org/api) for collecting weather information. Before start, you need to sign up and get your own `APP ID` to use there weather API. After activation of your API key you can use it to run this project.
+### Project Description
+We will develop a weather forecast Android Application with MVP architecture. The UI will be as like as above screenshot. There is a `Spinner` with some `City` name. After selection a city user need to hit the `View Weather` button. Then App will send request to Open Weather web API and show the weather information in the UI.
 
-Clone the project and open it using Android Studio. Then open your `local.properties` file under `Gradle Scripts`. You need to specify the BASE URL and APP ID in your `local.properties` file.
-Without creating your own API key of Open Weather you can just test the API with dummy or static response. To do so add below lines at the end of your `local.properties` file.
+### Open Weather API
+We will use [Open Weather Map API](https://openweathermap.org/api) for collecting weather information. To get the real weather information of a city, you need to sign up and get your own `APP ID`. Otherwise you can test the API with their sample `BASE URL` and sample `APP ID` without creating account.
+
+### Project Setup
+Clone the project and open it using Android Studio. Then open your `local.properties` file under `Gradle Scripts`. You need to specify the `base_url` and `app_id` in your `local.properties` file.
+
+#### Use Sample API without creating account
+Add below lines at the end of your `local.properties` file. Then run the project. You'll get dummy or static API response from Open Weather API.
 ```
 #this is sample Base URL
 base_url=https://samples.openweathermap.org/data/2.5/
@@ -16,7 +22,8 @@ base_url=https://samples.openweathermap.org/data/2.5/
 #this is sample App ID of Open Weather API
 app_id=b6907d289e10d714a6e88b30761fae22
 ```
-If you have already your own APP ID then you can use below lines at the end of the `local.properties` file.
+#### Use Real APP ID after sign up and activation of your APP ID
+After Sign up at the website collect your own `APP ID`. Then add below lines with your APP ID at the end of `local.properties` file.
 ```
 #this is real Base URL
 base_url=http://api.openweathermap.org/data/2.5/
