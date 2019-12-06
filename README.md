@@ -32,6 +32,8 @@ base_url=http://api.openweathermap.org/data/2.5/
 app_id=YOUR_OWN_APP_ID
 ```
 The BASE URL and APP ID will be fetched from `build.gradle` file and will be stored it in `BuildConfig`. And `Retrofit` API call will use the BASE URL and APP ID from `BuildConfig`.
+
+**Note:** The free version of Open Weather API allows maximum 60 API calls per minute.
 ### Run the project
 Sync the `Gradle` and run the project. Install APK on your emulator or real device. Turn on the internet of your testing device. For better understanding, please read the comments of every methods. Hope, these comments will help you to feel the `MVP Architecture`.
 ### Disclaimer
