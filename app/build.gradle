@@ -52,18 +52,25 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 }
-//repositories {
-//    mavenCentral()
-//}
 
 def getBaseUrl() {
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
-    return properties.getProperty("base_url")
+
+    String baseUrl = properties.getProperty("base_url")
+    if(baseUrl==null)
+        throw new GradleException("Add 'base_url' field at local.properties file. For more details: https://github.com/hasancse91/weather-app-android-mvp-architecture/blob/master/README.md")
+
+    return baseUrl
 }
 
 def getAppId() {
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
-    return properties.getProperty("app_id")
+
+    String appId = properties.getProperty("app_id")
+    if(appId==null)
+        throw new GradleException("Add 'app_id' field at local.properties file. For more details: https://github.com/hasancse91/weather-app-android-mvp-architecture/blob/master/README.md")
+
+    return appId
 }
