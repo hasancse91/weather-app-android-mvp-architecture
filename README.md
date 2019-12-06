@@ -1,4 +1,5 @@
-# Android MVP Architecture Sample Weather App - (Kotlin + Retrofit + MVP)
+# Android MVP Architecture Sample Weather App
+## Kotlin + Retrofit (without depenedency injection)
 
 MVP Architecture is one of the most popular architecture to develop a maintanable and managable codebase. We are developing a sample `Weater Forecast` Android App with `MVP Architecture` using `Kotlin` language and `Retrofit` network calling library.
 
