@@ -11,7 +11,7 @@ We will develop a weather forecast Android Application with MVP architecture. Th
 We will use [Open Weather Map API](https://openweathermap.org/api) for collecting weather information. To get the real weather information of a city, you need to sign up and get your own `APP ID`. Otherwise you can test the API with their sample `BASE URL` and sample `APP ID` without creating account.
 
 ### Project Setup
-Clone the project and open it using Android Studio. Then open your `local.properties` file under `Gradle Scripts`. You need to specify the `base_url` and `app_id` in your `local.properties` file.
+Clone the project and open it using Android Studio. Then open your `local.properties` file under `Gradle Scripts`. You need to specify the `base_url` and `app_id` in your `local.properties` file. Store your API secret in plain string file or Kotlin file is very risky. For security purpose it's better store in local.properties file than plain string/Kotlin file.
 
 #### Use Sample API without creating account
 Add below lines at the end of your `local.properties` file. Then run the project. You'll get dummy or static API response from Open Weather API.
