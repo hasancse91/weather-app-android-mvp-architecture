@@ -38,7 +38,7 @@ class WeatherInfoShowModelImpl(private val context: Context) : WeatherInfoShowMo
 
         } catch (e: IOException) {
            e.printStackTrace()
-            callback.onRequestFailed(e.localizedMessage) //let presenter know about failure
+            callback.onRequestFailed(e.localizedMessage!!) //let presenter know about failure
         }
 
     }
@@ -67,7 +67,7 @@ class WeatherInfoShowModelImpl(private val context: Context) : WeatherInfoShowMo
 
             // this method will be triggered if network call failed
             override fun onFailure(call: Call<WeatherInfoResponse>, t: Throwable) {
-                callback.onRequestFailed(t.localizedMessage) //let presenter know about failure
+                callback.onRequestFailed(t.localizedMessage!!) //let presenter know about failure
             }
 
         })
