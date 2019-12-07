@@ -7,9 +7,9 @@ import com.hellohasan.weatherforecast.features.weather_info_show.model.data_clas
 import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.WeatherDataModel
 import com.hellohasan.weatherforecast.features.weather_info_show.model.data_class.WeatherInfoResponse
 import com.hellohasan.weatherforecast.features.weather_info_show.view.MainActivityView
-import com.hellohasan.weatherforecast.kelvinToCelsius
-import com.hellohasan.weatherforecast.unixTimestampToDateTimeString
-import com.hellohasan.weatherforecast.unixTimestampToTimeString
+import com.hellohasan.weatherforecast.utils.kelvinToCelsius
+import com.hellohasan.weatherforecast.utils.unixTimestampToDateTimeString
+import com.hellohasan.weatherforecast.utils.unixTimestampToTimeString
 
 class WeatherInfoShowPresenterImpl(
         private var view: MainActivityView?,
