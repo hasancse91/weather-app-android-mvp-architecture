@@ -39,11 +39,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // material design
-    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    implementation 'com.google.android.material:material:1.2.0-alpha03'
 
     // network call related libraries
-    implementation 'com.squareup.retrofit2:retrofit:2.6.0' // REST API calling library
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.0' // JSON parsing library
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2' // REST API calling library
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2' // JSON parsing library
     implementation('com.github.ihsanbal:LoggingInterceptor:3.0.0') { // HTTP pretty log printing library
         exclude group: 'org.json', module: 'json'
     }
