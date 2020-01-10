@@ -23,7 +23,7 @@ base_url=https://samples.openweathermap.org/data/2.5/
 app_id=b6907d289e10d714a6e88b30761fae22
 ```
 #### Use Real APP ID after sign up and activation of your APP ID
-After Sign up at the website collect your own `APP ID`. Then add below lines with your APP ID at the end of `local.properties` file.
+After Sign up at the website collect your own `APP ID` from their [API Keys page](https://home.openweathermap.org/api_keys). Then add below lines with your APP ID at the end of `local.properties` file.
 ```properties
 #this is real Base URL
 base_url=http://api.openweathermap.org/data/2.5/
