@@ -2,6 +2,8 @@
 
 MVP Architecture is one of the most popular architecture to develop a maintanable and managable codebase. We are developing a sample `Weater Forecast` Android App with `MVP Architecture` using `Kotlin` language and `Retrofit` network calling library.
 
+> **There is another repository for the same project in `MVVM Architecture.` Check MVVM repository [from here](https://github.com/hasancse91/weather-app-android-mvvm).**
+
 <img src="https://raw.githubusercontent.com/hasancse91/weather-app-android-mvp-architecture/master/data/screenshot_1.png" width="250" height="444" />
 
 ### Project Description
