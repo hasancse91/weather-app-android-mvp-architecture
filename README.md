@@ -2,6 +2,8 @@
 
 MVP Architecture is one of the most popular architecture to develop a maintanable and managable codebase. We are developing a sample `Weater Forecast` Android App with `MVP Architecture` using `Kotlin` language and `Retrofit` network calling library.
 
+ For simplicity, in this project I don't use any dependency injection framework. With the same project concept there is [another repository](https://github.com/hasancse91/weather-app-android-mvp-dagger) where I implemented `Dagger 2 dependency injection library`. You can check that repository after this one.
+
 **There is another repository for the same project in `MVVM Architecture.` Check MVVM repository [from here](https://github.com/hasancse91/weather-app-android-mvvm).**
 
 <img src="https://raw.githubusercontent.com/hasancse91/weather-app-android-mvp-architecture/master/data/screenshot_1.png" width="250" height="444" />
@@ -39,4 +41,4 @@ The BASE URL and APP ID will be fetched from `build.gradle` file and will be sto
 ### Run the project
 Sync the `Gradle` and run the project. Install APK on your emulator or real device. Turn on the internet of your testing device. For better understanding, please read the comments of every methods. Hope, these comments will help you to feel the `MVP Architecture`.
 ### Disclaimer
-There are some other ways of implementation of `MVP`. There are some arguments about the responsibilities of `presenter` and `model`. After understanding the basic part of `MVP Architecture` you can test them one by one. For simplicity, I've ignored `dependency injection` in this project. I will create another repository of `MVP` with dependency injection `Dagger 2`.
+There are some other ways of implementation of `MVP`. There are some arguments about the responsibilities of `presenter` and `model`. After understanding the basic part of `MVP Architecture` you can test them one by one. For simplicity, I've ignored `dependency injection` in this project. I have created another repository of `MVP` with dependency injection `Dagger 2`. You can check `Android Weather App MVP Architecture with Dagger 2` repository [from here](https://github.com/hasancse91/weather-app-android-mvp-dagger).
