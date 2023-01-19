@@ -26,8 +26,7 @@ object RetrofitClient {
                         // for pretty log of HTTP request-response
                         httpClient.addInterceptor(
                             LoggingInterceptor.Builder()
-                                .setLevel(Level.BASIC)
-                                .setLevel(Level.BASIC)
+                                .setLevel(if(BuildConfig.DEBUG) Level.BASIC else Level.NONE)
                                 .log(Platform.INFO)
                                 .request("LOG")
                                 .response("LOG")
