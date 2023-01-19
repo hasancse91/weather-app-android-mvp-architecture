@@ -8,7 +8,6 @@ import okhttp3.OkHttpClient
 import okhttp3.internal.platform.Platform
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.Executors
 
 object RetrofitClient {
 
@@ -22,26 +21,26 @@ object RetrofitClient {
                     if (retrofit == null) {
 
                         val httpClient = OkHttpClient.Builder()
-                                .addInterceptor(QueryParameterAddInterceptor())
+                            .addInterceptor(QueryParameterAddInterceptor())
 
                         // for pretty log of HTTP request-response
                         httpClient.addInterceptor(
-                                LoggingInterceptor.Builder()
-                                        .loggable(BuildConfig.DEBUG)
-                                        .setLevel(Level.BASIC)
-                                        .log(Platform.INFO)
-                                        .request("LOG")
-                                        .response("LOG")
-                                        .executor(Executors.newSingleThreadExecutor())
-                                        .build())
+                            LoggingInterceptor.Builder()
+                                .setLevel(Level.BASIC)
+                                .setLevel(Level.BASIC)
+                                .log(Platform.INFO)
+                                .request("LOG")
+                                .response("LOG")
+                                .build()
+                        )
 
                         val client = httpClient.build()
 
                         retrofit = Retrofit.Builder()
-                                .baseUrl(BuildConfig.BASE_URL)
-                                .addConverterFactory(GsonConverterFactory.create(gson))
-                                .client(client)
-                                .build()
+                            .baseUrl(BuildConfig.BASE_URL)
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
                     }
                 }
 
